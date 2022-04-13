@@ -1,0 +1,43 @@
+---
+title: Auryn API
+
+language_tabs: # must be one of https://git.io/vQNgJ
+  - shell
+  - javascript
+  - php
+
+toc_footers:
+  - <a href='#'>Solicite sua credencial para sua loja</a>
+  - <a download='auryn_api.postman_collection.json' class='postman' href='https://www.postman.com/collections/3bc697746b404dfe284e'>➤ Download Collection Postman</a>
+
+includes:
+  - users.md.erb
+  - errors
+
+search: true
+
+code_clipboard: true
+
+meta:
+  - name: description
+    content: Documentação da API da Auryn
+---
+
+# Introdução
+
+A API possui como base os métodos HTTP, definindo qual será a ação tomada através destes métodos.
+
+Somente serão aceitas chamadas utilizando HTTPS.
+
+# Tipos de dados
+
+## Data
+Seguindo a definição da [ISO8601](https://www.iso.org/iso-8601-date-and-time-format.html) o formato de data padrão será uma string com o seguinte formato: `2015-07-25T19:49:59-03:00`.
+
+## CPF / CNPJ
+Nosso banco de dados suporta que o usuário possua CPF ou CNPJ, usando como base o tamanho intrínseco de cada tipo. O CPF possui 11 dígitos, já o CNPJ possui 14. Portanto, os campos de CPF disponíveis automaticamente suportam CNPJ.
+
+## INT
+Raramente utilizamos inteiros com sinal, portanto quando nos referimos a INT (inteiro) estamos indicando um valor igual ou maior que zero. Caso ocorra alguma exceção, ela estará documentada na rota. Existem alguns casos que o campo é inteiro e apenas aceitará valores pares. Isto ocorre devido a lógica de funcionamento de itens como páginas de álbuns que sempre são pares. Caso seja violada a regra durante a passagem de dados, a API retornará [400 - Bad Request](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1).
+
+# Autenticação

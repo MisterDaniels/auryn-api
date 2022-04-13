@@ -1,0 +1,151 @@
+# Usuários
+
+## Criar usuário
+
+```shell
+curl --location --request POST 'http://fotogea.photobookfinal.com/v1/usuarios?nome=Riley Ben King&email=bbking@auryn.com.br&senha=BluesBoy' \
+--header 'Authorization: Basic ZG9kb3NpbHZhNTFAZ21haWwuY29tOk1pc3RlcmlvMDIxMjE=' \
+--header 'Cookie: PHPSESSID=nsb714bi6emd7gnbcd79u5uog3'
+```
+
+```javascript
+var myHeaders = new Headers();
+myHeaders.append("Authorization", "Basic ZG9kb3NpbHZhNTFAZ21haWwuY29tOk1pc3RlcmlvMDIxMjE=");
+myHeaders.append("Cookie", "PHPSESSID=nsb714bi6emd7gnbcd79u5uog3");
+
+var formdata = new FormData();
+
+var requestOptions = {
+  method: 'POST',
+  headers: myHeaders,
+  body: formdata,
+  redirect: 'follow'
+};
+
+fetch("http://fotogea.photobookfinal.com/v1/usuarios?nome=Riley Ben King&email=bbking@auryn.com.br&senha=BluesBoy", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+```
+
+```php
+<?php
+$client = new http\Client;
+$request = new http\Client\Request;
+$request->setRequestUrl('http://fotogea.photobookfinal.com/v1/usuarios?nome=Riley Ben King&email=bbking@auryn.com.br&senha=BluesBoy');
+$request->setRequestMethod('POST');
+$body = new http\Message\Body;
+$request->setBody($body);
+$request->setOptions(array());
+$request->setHeaders(array(
+  'Authorization' => 'Basic ZG9kb3NpbHZhNTFAZ21haWwuY29tOk1pc3RlcmlvMDIxMjE=',
+  'Cookie' => 'PHPSESSID=nsb714bi6emd7gnbcd79u5uog3'
+));
+$client->enqueue($request)->send();
+$response = $client->getResponse();
+echo $response->getBody();
+```
+
+> O retorno do comando acima:
+
+```json
+{
+  "id": 1
+}
+```
+
+Para criar um novo usuário.
+
+### HTTP Request
+
+`POST <%= config[:endpoint] %>/v1/usuarios`
+
+### Parâmetros necessários
+
+Parâmetro | Tipo | Descrição
+--------- | ------- | -----------
+nome | string(45) | Nome real do usuário.
+email | string(45) | Email desejado do usuário.
+senha | string | Senha do usuário.
+
+## Listar usuários
+
+```shell
+curl --location --request GET 'http://fotogea.photobookfinal.com/v1/usuarios' \
+--header 'Authorization: Basic ZG9kb3NpbHZhNTFAZ21haWwuY29tOk1pc3RlcmlvMDIxMjE=' \
+--header 'Cookie: PHPSESSID=5bu2lmbp6ajablua770vssrg55'
+```
+
+```javascript
+var myHeaders = new Headers();
+myHeaders.append("Authorization", "Basic ZG9kb3NpbHZhNTFAZ21haWwuY29tOk1pc3RlcmlvMDIxMjE=");
+myHeaders.append("Cookie", "PHPSESSID=5bu2lmbp6ajablua770vssrg55");
+
+var requestOptions = {
+  method: 'GET',
+  headers: myHeaders,
+  redirect: 'follow'
+};
+
+fetch("http://fotogea.photobookfinal.com/v1/usuarios", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+```
+
+```php
+<?php
+$client = new http\Client;
+$request = new http\Client\Request;
+$request->setRequestUrl('http://fotogea.photobookfinal.com/v1/usuarios');
+$request->setRequestMethod('GET');
+$request->setOptions(array());
+$request->setHeaders(array(
+  'Authorization' => 'Basic ZG9kb3NpbHZhNTFAZ21haWwuY29tOk1pc3RlcmlvMDIxMjE=',
+  'Cookie' => 'PHPSESSID=5bu2lmbp6ajablua770vssrg55'
+));
+$client->enqueue($request)->send();
+$response = $client->getResponse();
+echo $response->getBody();
+```
+
+> O retorno do comando acima:
+
+```json
+[
+    {
+        id: 123,
+        nome: "Riley Ben King",
+        email: "bbking@mississippi.com",
+        idVendedor: null,
+        cpf: null,
+        criacao: "1997-07-16T19:20:30",
+        endereco: [ ]
+    },
+    {
+        "id": 124,
+        "nome": "James Douglas Morrison",
+        "email": "jim@morrison.com",
+        “idVendedor”: 5,
+        "cpf": null,
+        "telefone1": "(11) 99345-8080",
+        "telefone2": null,
+        "criacao": "1971-07-03T18:00:01",
+        "endereco": {
+            cep: "89560000",
+            rua: "Père Lachaise",
+            numero: "0",
+            bairro: "centro",
+            complemento: "Morada de pedra",
+            cidade: "França",
+            estado: "Fr"
+        }
+    }
+]
+```
+
+Para listar todos os usuários.
+
+### HTTP Request
+
+`GET <%= config[:endpoint] %>/v1/usuarios`
